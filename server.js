@@ -21,12 +21,6 @@ let jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
 jwtOptions.secretOrKey = process.env.JWT_SECRET
 
-let token = jwt.sign({
-    userName: 'bob'
-}, 'secret', {
-    expiresIn: 60 * 60
-});
-
 // Tell passport to use our "strategy"
 let strategy = new JwtStrategy(jwtOptions, function(jwt_payload,next){
     console.log('payload received', jwt_payload);
